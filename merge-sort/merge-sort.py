@@ -1,6 +1,7 @@
 from random import randint
+import sys
 
-def sort(arr):
+def sort(arr, desc):
 	l = len(arr)
 
 	# If the array is too large, split it in two and recursively call sort on each half
@@ -9,20 +10,23 @@ def sort(arr):
 		arr1 = arr[:l/2]
 		arr2 = arr[l/2:]
 
-		return merge(sort(arr1), sort(arr2))
+		return merge(sort(arr1, desc), sort(arr2, desc), desc)
 
-	# If the array has two elements, return a reversed version if the first element is bigger
+	# If the array is down to two elements:
+	# If the descending flag is false, return a reversed version if the first element is bigger
+	# If the descending flag is true, return reversed array if *second* element is bigger
 	# Otherwise return the array unchanged
 	elif l == 2:
-		if arr[0] > arr[1]:
+		if (arr[0] > arr[1] and not desc) or (arr[0] < arr[1] and desc):
 			return [arr[1], arr[0]]
 		else:
 			return arr
 
+	# If the array has just one element, return itself
 	else:
 		return arr
 
-def merge(arr1, arr2):
+def merge(arr1, arr2, desc):
 	# Set array traversal pointers to 0
 	i, j = 0, 0
 	len_1, len_2 = len(arr1), len(arr2)
@@ -37,8 +41,10 @@ def merge(arr1, arr2):
 			result.extend(arr1[i:])
 			break
 
-		# Compare values at each pointer, append the lower value to the merged array and increment the appropriate pointer
-		if arr1[i] < arr2[j]:
+		# Compare values at each pointer
+		# Append the lower value (if desc is false) or the higher value (if desc is true) to the merged array
+		# Increment the appropriate pointer
+		if (arr1[i] < arr2[j] and not desc) or (arr1[i] > arr2[j] and desc):
 			result.append(arr1[i])
 			i += 1
 		else:
@@ -49,8 +55,14 @@ def merge(arr1, arr2):
 
 def main():
 	random_array = [randint(-100, 100) for n in range(100)]
-	print random_array
-	print sort(random_array)
+
+	descending = False
+
+	# If 'd' or 'D' is specified in command line, switch on the 'sort descending' flag
+	if len(sys.argv) > 1 and sys.argv[1] in ['d', 'D']:
+		descending = True
+
+	print sort(random_array, descending)
 
 if __name__ == '__main__':
 	main()
