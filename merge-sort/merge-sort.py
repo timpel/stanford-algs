@@ -50,13 +50,13 @@ def merge(arr1, arr2):
 
 	return result
 
-def main():
-	start_array = [n for n in reversed(range(256000))]
+def main(arr_len, desc):
+	start_array = [n for n in reversed(range(arr_len))]
 
 	start_time = time.time()
 
-	# If 'd' or 'D' is specified in command line, reverse result
-	if len(sys.argv) > 1 and sys.argv[1] in ['d', 'D']:
+	# If descending sort is specified, reverse result
+	if desc:
 		sorted_array = list(reversed(sort(start_array)))
 
 	else:
@@ -65,4 +65,11 @@ def main():
 	print time.time() - start_time
 
 if __name__ == '__main__':
-	main()
+	try:
+		arr_len = int(sys.argv[1])
+	except (IndexError, ValueError):
+		print 'Format: python merge-sort.py <array-length> [d]'
+
+	desc = len(sys.argv) > 2 and sys.argv[2] in ['d', 'D']
+
+	main(arr_len, desc)
