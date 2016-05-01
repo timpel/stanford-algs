@@ -1,4 +1,4 @@
-from random import randint
+import time
 import sys
 
 def sort(arr, desc):
@@ -54,15 +54,18 @@ def merge(arr1, arr2, desc):
 	return result
 
 def main():
-	random_array = [randint(-100, 100) for n in range(100)]
+	start_array = [n for n in reversed(range(256000))]
 
 	descending = False
+
+	start_time = time.time()
 
 	# If 'd' or 'D' is specified in command line, switch on the 'sort descending' flag
 	if len(sys.argv) > 1 and sys.argv[1] in ['d', 'D']:
 		descending = True
 
-	print sort(random_array, descending)
+	sort(start_array, descending)
+	print time.time() - start_time
 
 if __name__ == '__main__':
 	main()
