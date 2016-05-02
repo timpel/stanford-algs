@@ -2,25 +2,22 @@ import time
 import sys
 
 def sort(arr):
-	l = len(arr)
+	arr_len = len(arr)
 
 	# If the array is too large, split it in two and recursively call sort on each half
 	# Then merge the arrays once they are sorted
-	if l > 2:
-		arr1 = arr[:l/2]
-		arr2 = arr[l/2:]
+	if arr_len > 2:
+		arr1 = arr[:arr_len/2]
+		arr2 = arr[arr_len/2:]
 
 		return merge(sort(arr1), sort(arr2))
 
 	# If the array is down to two elements:
 	# Return a reversed version if the first element is bigger
-	# Otherwise return the array unchanged
-	elif l == 2:
-		if (arr[0] > arr[1]):
-			return [arr[1], arr[0]]
-		else:
-			return arr
+	elif arr_len == 2 and arr[0] > arr[1]:
+		return [arr[1], arr[0]]
 
+	# Otherwise return the array unchanged
 	else:
 		return arr
 
