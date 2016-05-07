@@ -1,5 +1,6 @@
 from random import randint
 import sys
+import time
 
 count = 0
 
@@ -39,9 +40,13 @@ def merge_and_count_split(arr1, arr2):
 	return result
 
 def main(arr_len):
-	#test_arr = [randint(0,arr_len) for n in range(arr_len)]
-	test_arr = [1,6,3,4,8,2,5,0,3,6,5,4,7,2,2,5,6,8,1]
-	return sort_and_count(test_arr)
+	test_arr = [n for n in reversed(range(arr_len))]
+
+	start_time = time.time()
+	
+	sort_and_count(test_arr)
+	
+	print time.time() - start_time
 
 if __name__ == '__main__':
 	try:
@@ -50,4 +55,3 @@ if __name__ == '__main__':
 		print 'Format: python merge-sort.py <array-length>'
 
 	main(arr_len)
-	print count
