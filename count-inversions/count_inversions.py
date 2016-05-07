@@ -1,6 +1,8 @@
 from random import randint
 import sys
 
+count = 0
+
 def sort_and_count(arr):
 	n = len(arr)
 
@@ -16,6 +18,7 @@ def sort_and_count(arr):
 def merge_and_count_split(arr1, arr2):
 	i, j = 0, 0
 	result = []
+	global count
 
 	while 1:
 		if i == len(arr1):
@@ -25,17 +28,19 @@ def merge_and_count_split(arr1, arr2):
 			result.extend(arr1[i:])
 			break
 
-		if (arr1[i] < arr2[j]):
+		if (arr1[i] <= arr2[j]):
 			result.append(arr1[i])
 			i += 1
 		else:
 			result.append(arr2[j])
+			count += len(arr1) - i
 			j += 1
 
 	return result
 
 def main(arr_len):
-	test_arr = [randint(0,arr_len) for n in range(arr_len)]
+	#test_arr = [randint(0,arr_len) for n in range(arr_len)]
+	test_arr = [1,6,3,4,8,2,5,0,3,6,5,4,7,2,2,5,6,8,1]
 	return sort_and_count(test_arr)
 
 if __name__ == '__main__':
@@ -44,4 +49,5 @@ if __name__ == '__main__':
 	except (IndexError, ValueError):
 		print 'Format: python merge-sort.py <array-length>'
 
-	print main(arr_len)
+	main(arr_len)
+	print count
