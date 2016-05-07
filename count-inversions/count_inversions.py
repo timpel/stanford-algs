@@ -8,10 +8,9 @@ def sort_and_count(arr):
 		return 0
 
 	else:
-		first_half = sort_and_count(arr[:n/2])
-		second_half = sort_and_count(arr[n/2:])
-		split = merge_and_count_split(arr)
-		return first_half + second_half + split
+		first_half = arr[:n/2]
+		second_half = arr[n/2:]
+		return merge_and_count_split(sort_and_count(first_half), sort_and_count(second_half))
 
 
 def merge_and_count_split(arr):
