@@ -13,7 +13,7 @@ def sort_and_count(arr):
 		return merge_and_count_split(sort_and_count(first_half), sort_and_count(second_half))
 
 
-def merge_and_count_split(arr):
+def merge_and_count_split(arr1, arr2):
 	return 0
 
 def main(arr_len):
