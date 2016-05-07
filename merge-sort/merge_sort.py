@@ -4,22 +4,14 @@ import sys
 def sort(arr):
 	arr_len = len(arr)
 
-	# If the array is too large, split it in two and recursively call sort on each half
-	# Then merge the arrays once they are sorted
-	if arr_len > 2:
+	if arr_len == 1:
+		return arr
+
+	else:
 		arr1 = arr[:arr_len/2]
 		arr2 = arr[arr_len/2:]
 
 		return merge(sort(arr1), sort(arr2))
-
-	# If the array is down to two elements:
-	# Return a reversed version if the first element is bigger
-	elif arr_len == 2 and arr[0] > arr[1]:
-		return [arr[1], arr[0]]
-
-	# Otherwise return the array unchanged
-	else:
-		return arr
 
 def merge(arr1, arr2):
 	# Set array traversal pointers to 0
