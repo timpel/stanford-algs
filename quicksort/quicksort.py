@@ -16,7 +16,10 @@ def sort(arr, start, length):
 
 	swap(arr, start, i-1)
 
-	return (arr, length, pivot)
+	first_part = sort(arr[start:i], start, i)
+	second_part = sort(arr[i:length], start, length - i - 1)
+
+	return first_part + second_part
 
 
 def swap(arr, x, y):
