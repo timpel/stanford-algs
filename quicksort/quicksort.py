@@ -3,7 +3,6 @@ import sys
 import time
 
 def sort(arr, start, length):
-
 	if length <= 1:
 		return arr
 
@@ -22,7 +21,7 @@ def sort(arr, start, length):
 	swap(arr, start, i-1)
 
 	first_part = sort(arr[start:i], start, i)
-	second_part = sort(arr[i:length], start, length - i - 1)
+	second_part = sort(arr[i:length], start, length - i)
 
 	return first_part + second_part
 
@@ -33,9 +32,9 @@ def swap(arr, x, y):
 	arr[y] = temp
 
 def check(arr):
-	print arr
 	for i in range(len(arr)-1):
 		if arr[i] > arr[i+1]:
+			print 'Sort Failed!'
 			return False
 	return True
 
@@ -43,7 +42,7 @@ def main(arr_len):
 
 	unsorted = [randint(0, 100) for n in range(arr_len)]
 	start_time = time.time()
-	print check(sort(unsorted, 0, len(unsorted)-1))
+	check(sort(unsorted, 0, len(unsorted)))
 
 
 if __name__ == '__main__':
