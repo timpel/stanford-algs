@@ -1,11 +1,28 @@
-def sort(arr, length):
-	
-	if length == 1:
-		return
+from random import randint
+
+def sort(arr, start, length):
+
+	if length <= 1:
+		return arr
 
 	pivot = choose_pivot(arr, length)
+	i = j = start + 1
+
+	while j < length:
+		if arr[j] < pivot:
+			swap(arr, j, i)
+			i += 1
+		j += 1
+
+	swap(arr, start, i-1)
 
 	return (arr, length, pivot)
+
+
+def swap(arr, x, y):
+	temp = arr[x]
+	arr[x] = arr[y]
+	arr[y] = temp
 
 
 def choose_pivot(arr, length):
@@ -15,7 +32,5 @@ def choose_pivot(arr, length):
 
 if __name__ == '__main__':
 	
-	unsorted = list(reversed(range(1000)))
-	initial_len = len(unsorted)
-	
-	print sort(unsorted, initial_len)
+	unsorted = [randint(0, 100) for n in range(100)]
+	print sort(unsorted, 0, len(unsorted)-1)
