@@ -38,13 +38,14 @@ def choose_pivot(arr, length):
 def main(arr_len):
 
 	unsorted = [randint(0, 1000000) for n in range(arr_len)]
-	#unsorted = list(range(arr_len))
-
 	start_time = time.time()
-
 	sort(unsorted, 0, len(unsorted)-1)
+	print 'unsorted: %f' % (time.time() - start_time)
 
-	print time.time() - start_time
+	unsorted = list(range(arr_len))
+	start_time = time.time()
+	sort(unsorted, 0, len(unsorted)-1)
+	print 'sorted: %f' % (time.time() - start_time)
 
 
 if __name__ == '__main__':

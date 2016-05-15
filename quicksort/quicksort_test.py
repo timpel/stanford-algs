@@ -1,4 +1,7 @@
 import quicksort
+import sys
 
-for n in [2**n for n in range(20)]:
+sys.setrecursionlimit(10000)
+
+for n in [2**n for n in range(15)]:
 	quicksort.main(n)
