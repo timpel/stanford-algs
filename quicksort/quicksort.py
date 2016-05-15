@@ -32,17 +32,18 @@ def swap(arr, x, y):
 	arr[x] = arr[y]
 	arr[y] = temp
 
+def check(arr):
+	print arr
+	for i in range(len(arr)-1):
+		if arr[i] > arr[i+1]:
+			return False
+	return True
+
 def main(arr_len):
 
-	unsorted = [randint(0, 1000000) for n in range(arr_len)]
+	unsorted = [randint(0, 100) for n in range(arr_len)]
 	start_time = time.time()
-	sort(unsorted, 0, len(unsorted)-1)
-	print 'unsorted: %f' % (time.time() - start_time)
-
-	unsorted = list(range(arr_len))
-	start_time = time.time()
-	sort(unsorted, 0, len(unsorted)-1)
-	print 'sorted: %f' % (time.time() - start_time)
+	print check(sort(unsorted, 0, len(unsorted)-1))
 
 
 if __name__ == '__main__':
