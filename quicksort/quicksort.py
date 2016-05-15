@@ -7,7 +7,10 @@ def sort(arr, start, length):
 	if length <= 1:
 		return arr
 
-	pivot = choose_pivot(arr, length)
+	pivot_index = randint(start, length-1)
+	pivot = arr[pivot_index]
+	swap(arr, start, pivot_index)
+
 	i = j = start + 1
 
 	while j < length:
@@ -28,12 +31,6 @@ def swap(arr, x, y):
 	temp = arr[x]
 	arr[x] = arr[y]
 	arr[y] = temp
-
-
-def choose_pivot(arr, length):
-
-	return arr[0]
-
 
 def main(arr_len):
 
