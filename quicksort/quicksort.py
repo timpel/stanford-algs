@@ -20,10 +20,10 @@ def sort(arr, start, length):
 
 	swap(arr, start, i-1)
 
-	first_part = sort(arr[start:i], start, i)
+	first_part = sort(arr[start:i-1], start, i-1)
 	second_part = sort(arr[i:length], start, length - i)
 
-	return first_part + second_part
+	return first_part + [arr[i-1]] + second_part
 
 
 def swap(arr, x, y):
