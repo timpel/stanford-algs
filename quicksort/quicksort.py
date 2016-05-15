@@ -1,4 +1,6 @@
 from random import randint
+import sys
+import time
 
 def sort(arr, start, length):
 
@@ -33,7 +35,23 @@ def choose_pivot(arr, length):
 	return arr[0]
 
 
+def main(arr_len):
+
+	unsorted = [randint(0, 1000000) for n in range(arr_len)]
+	#unsorted = list(range(arr_len))
+
+	start_time = time.time()
+
+	sort(unsorted, 0, len(unsorted)-1)
+
+	print time.time() - start_time
+
+
 if __name__ == '__main__':
-	
-	unsorted = [randint(0, 100) for n in range(100)]
-	print sort(unsorted, 0, len(unsorted)-1)
+
+	try:
+		arr_len = int(sys.argv[1])
+	except (IndexError, ValueError):
+		print 'Format: python quicksort.py <array-length>'
+
+	main(arr_len)
