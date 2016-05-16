@@ -3,9 +3,6 @@ import sys
 import time
 
 def sort(arr, start, length):
-	if length <= 1:
-		return arr
-
 	pivot_index = randint(start, length-1)
 	pivot = arr[pivot_index]
 	swap(arr, start, pivot_index)
@@ -20,8 +17,15 @@ def sort(arr, start, length):
 
 	swap(arr, start, i-1)
 
-	first_part = sort(arr[start:i-1], start, i-1)
-	second_part = sort(arr[i:length], start, length - i)
+	if i > 2:
+		first_part = sort(arr[start:i-1], start, i-1)
+	else:
+		first_part = arr[start:i-1]
+
+	if length - i > 1:
+		second_part = sort(arr[i:length], start, length - i)
+	else:
+		second_part = arr[i:length]
 
 	return first_part + [arr[i-1]] + second_part
 
@@ -31,8 +35,13 @@ def swap(arr, x, y):
 	arr[x] = arr[y]
 	arr[y] = temp
 
-def check(arr):
-	for i in range(len(arr)-1):
+def check(arr, length):
+
+	if length != len(arr):
+		print 'Array size changed!'
+		return False
+
+	for i in range(length-1):
 		if arr[i] > arr[i+1]:
 			print 'Sort Failed!'
 			return False
@@ -42,7 +51,8 @@ def main(arr_len):
 
 	unsorted = [randint(0, 100) for n in range(arr_len)]
 	start_time = time.time()
-	check(sort(unsorted, 0, len(unsorted)))
+	length = len(unsorted)
+	check(sort(unsorted, 0, length), length)
 
 
 if __name__ == '__main__':
