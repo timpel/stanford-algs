@@ -46,7 +46,7 @@ def main(arr_len, order):
 
 	unsorted = [randint(0, arr_len*10) for n in range(arr_len)]
 	length = len(unsorted)
-	print (unsorted, select(unsorted, order))
+	print select(unsorted, order)
 
 
 if __name__ == '__main__':
@@ -54,7 +54,8 @@ if __name__ == '__main__':
 	try:
 		arr_len = int(sys.argv[1])
 		order_stat = int(sys.argv[2]) - 1
+		main(arr_len, order_stat)
 	except (IndexError, ValueError):
-		print 'Format: python quicksort.py <array-length> <order-stat>'
+		print 'Format: python random_selection.py <array-length> <order-stat>'
 
-	main(arr_len, order_stat)
+	
